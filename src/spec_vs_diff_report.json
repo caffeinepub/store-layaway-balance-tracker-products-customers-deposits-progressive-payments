@@ -1,0 +1,32 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-14T19:39:13.146Z",
+  "summary": "REQ-16 appears largely implemented: a new client-side filtering utility was added and RepairsDashboard now maintains contact/delivery filter state, applies filtering on top of the selected dataset (open vs all), and provides a reset action in a visible filter section. However, due to truncation of RepairsDashboard.tsx, it’s not fully verifiable from the diff summary that all required filter options are present in the UI and that the empty state behavior is correctly shown when filters yield zero results.",
+  "missing_requirements": [
+    {
+      "id": "REQ-16",
+      "requirement": "Filter options include at minimum: contactStatus = toCall, contactStatus = called, and delivery = not delivered, delivery = delivered (with an 'All' option for each dimension).",
+      "reason": "The diff shows state types and the beginning of the filter UI with an 'All' button for contact status, but the UI code is truncated before confirming presence of the 'toCall'/'called' buttons and the full delivery-status filter controls.",
+      "evidence": [
+        "frontend/src/features/repairs/components/RepairsDashboard.tsx"
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "requirement": "When filters result in zero matching items, the empty state is shown (and reflects the current dataset selection and filters).",
+      "reason": "The diff summary does not show the table/empty-state rendering logic after filtering; the file is truncated before confirming how empty results are handled with the new filtered list.",
+      "evidence": [
+        "frontend/src/features/repairs/components/RepairsDashboard.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [],
+  "confidence": 0.62,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/src/features/repairs/components/RepairsDashboard.tsx",
+    "frontend/src/features/repairs/utils/repairFilters.ts",
+    "project_state.json"
+  ]
+}

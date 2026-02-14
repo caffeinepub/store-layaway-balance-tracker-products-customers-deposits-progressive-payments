@@ -1,0 +1,40 @@
+{
+  "kind": "build_request",
+  "title": "Add a status filter section to the Repairs dashboard",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-16",
+      "text": "Add a small filtering section to the Repairs dashboard (frontend/src/features/repairs/components/RepairsDashboard.tsx) to filter repair records by status, including: (1) contact status (To call vs Called) and (2) delivery status (Not delivered vs Delivered). The filter must work together with the existing \"show all\" vs \"open only\" toggle and must update the displayed table rows immediately.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "si mi integri anche una piccola sezione per filtrare in base allo stato"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The Repairs dashboard UI includes a visible filter area above the table (or in the CardHeader/CardContent) that allows filtering by contact status and by delivery status.",
+        "Filter options include at minimum: contactStatus = toCall, contactStatus = called, and delivery = not delivered, delivery = delivered (with an 'All' option for each dimension).",
+        "Changing any filter updates the list instantly without a backend call (client-side filtering of the already-fetched list).",
+        "The existing toggle between open repairs vs all repairs continues to work; filtering is applied on top of whichever dataset is currently selected.",
+        "A single action is provided to clear/reset filters back to showing all statuses for the current dataset selection.",
+        "When filters result in zero matching items, the empty state is shown (and reflects the current dataset selection and filters)."
+      ]
+    }
+  ],
+  "constraints": [
+    "Frontend immutable paths must not be edited: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui.",
+    "Keep the backend as a single Motoko actor (no new backend services)."
+  ],
+  "nonGoals": [
+    "Adding new backend query methods for filtered repair listing.",
+    "Changing the overdue reminder behavior or adding filters to the overdue reminder component."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

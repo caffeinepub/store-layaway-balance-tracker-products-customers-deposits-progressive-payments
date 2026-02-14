@@ -1,0 +1,31 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Status filters for Repairs dashboard",
+  "requirements": [
+    {
+      "id": "REQ-16",
+      "summary": "Add client-side status filters (contact + delivery) to RepairsDashboard that combine with the existing open/all toggle, update instantly, and can be reset.",
+      "acceptanceCriteria": [
+        "The Repairs dashboard UI includes a visible filter area above the table (or in the CardHeader/CardContent) that allows filtering by contact status and by delivery status.",
+        "Filter options include at minimum: contactStatus = toCall, contactStatus = called, and delivery = not delivered, delivery = delivered (with an 'All' option for each dimension).",
+        "Changing any filter updates the list instantly without a backend call (client-side filtering of the already-fetched list).",
+        "The existing toggle between open repairs vs all repairs continues to work; filtering is applied on top of whichever dataset is currently selected.",
+        "A single action is provided to clear/reset filters back to showing all statuses for the current dataset selection.",
+        "When filters result in zero matching items, the empty state is shown (and reflects the current dataset selection and filters)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/repairs/utils/repairFilters.ts",
+          "operation": "create",
+          "description": "Introduce shared types and a small pure helper to filter a RepairRecord[] by (a) contact status: all/toCall/called and (b) delivery status: all/delivered/notDelivered, returning the filtered list for use in the dashboard."
+        },
+        {
+          "path": "frontend/src/features/repairs/components/RepairsDashboard.tsx",
+          "operation": "modify",
+          "description": "Add a compact filter section in the Repairs dashboard CardHeader/CardContent using existing shadcn-ui components (e.g., Button, Badge, Card layout) to control contactStatus and deliveryStatus filters (each with an All option) plus a single Reset/Clear action; apply filtering client-side on top of the currently selected dataset (open vs all) to update table rows immediately; ensure empty-state rendering uses the filtered list and messaging reflects current toggle + active filters. Verify the component's usage instructions before implementing."
+        }
+      ]
+    }
+  ]
+}

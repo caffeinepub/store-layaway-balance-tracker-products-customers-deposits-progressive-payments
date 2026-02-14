@@ -1,0 +1,206 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 9,
+  "summary": "App per negozio di informatica/telefonia per tracciare vendite con acconto/saldo progressivo e gestire una sezione assistenze (riparazioni) con anagrafica dispositivo/cliente, difetto, preventivo, stato contatto e consegna, più notifiche di promemoria oltre 3 giorni lavorativi dall’ingresso.",
+  "architectural_notes": [
+    "Definire logica '3 giorni lavorativi' (escludere weekend/festivi?) e meccanismo di scheduling notifiche giornaliere per assistenze non consegnate oltre soglia.",
+    "Introdurre/standardizzare un meccanismo di localizzazione (i18n) per testi UI, sezioni/menu e notifiche, con italiano come lingua predefinita."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-build-a-frontend-screen-to-add-a-new-pending-balance-record-with-form-fields-for-product-type-description-model-customer-first-name-last-name-mobile-number-email-sale-price-and-initial-deposit",
+      "title": "Build a frontend screen to add a new pending-balance record with form fields for: product type/description, model, customer first name, last name, mobile number, email, sale price, and initial deposit.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-a-frontend-list-dashboard-of-all-pending-balance-records-showing-product-type-model-customer-name-sale-price-total-paid-remaining-balance-and-payment-status-indicator-show-a-green-check-when-fully-paid-otherwise-highlight-the-item-in-red-or-a-red-status-badge",
+      "title": "Build a frontend list/dashboard of all pending-balance records showing: product (type + model), customer name, sale price, total paid, remaining balance, and payment status indicator. Show a green check when fully paid; otherwise highlight the item in red (or a red status badge).",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-provide-a-frontend-detail-view-or-expandable-row-modal-for-a-pending-balance-record-where-the-user-can-add-new-payment-installments-and-view-the-payment-history-updating-payments-must-immediately-update-the-remaining-balance-and-status-indicator-green-check-vs-red",
+      "title": "Provide a frontend detail view (or expandable row/modal) for a pending-balance record where the user can add new payment installments and view the payment history. Updating payments must immediately update the remaining balance and status indicator (green check vs red).",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-consistent-visual-theme-across-the-app-colors-typography-spacing-and-components-suitable-for-a-professional-computer-phone-retail-store-admin-tool-avoiding-blue-purple-as-the-primary-palette",
+      "title": "Apply a consistent visual theme across the app (colors, typography, spacing, and components) suitable for a professional computer/phone retail store admin tool, avoiding blue/purple as the primary palette.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-react-query-hooks-for-repairs-assistance-that-wrap-the-new-backend-methods-create-list-get-by-id-update-quote-update-contact-status-mark-delivered-ensure-cache-keys-and-invalidation-mirror-the-existing-patterns-used-for-pending-balances-invalidate-list-detail-queries-on-mutation-success",
+      "title": "Add React Query hooks for repairs/assistance that wrap the new backend methods (create, list, get by id, update quote, update contact status, mark delivered). Ensure cache keys and invalidation mirror the existing patterns used for pending balances (invalidate list + detail queries on mutation success).",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-new-repairs-section-to-the-app-ui-accessible-from-the-main-authenticated-area-alongside-the-existing-sales-pending-balances-workflow-the-repairs-section-must-include-1-a-create-form-with-fields-for-device-category-type-device-model-customer-first-name-last-name-mobile-number-email-and-problem-defect-description-2-a-dedicated-area-to-enter-edit-the-quote-estimate-3-a-control-to-set-contact-status-between-to-call-and-called-and-4-a-delivered-checkbox-to-close-the-repair-when-the-device-is-returned",
+      "title": "Add a new \"Repairs\" section to the app UI, accessible from the main authenticated area alongside the existing sales/pending-balances workflow. The Repairs section must include: (1) a create form with fields for device category/type, device model, customer first name, last name, mobile number, email, and problem/defect description; (2) a dedicated area to enter/edit the quote/estimate; (3) a control to set contact status between \"To call\" and \"Called\"; and (4) a delivered checkbox to close the repair when the device is returned.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-repairs-dashboard-list-view-that-shows-all-open-repairs-not-delivered-by-default-with-clear-indicators-for-contact-status-to-call-vs-called-delivered-state-and-how-many-working-days-have-elapsed-since-entry-provide-a-detail-view-dialog-or-dedicated-panel-to-see-full-customer-device-problem-info-and-to-perform-updates-quote-contact-status-delivered",
+      "title": "Create a Repairs dashboard/list view that shows all open repairs (not delivered) by default, with clear indicators for contact status (To call vs Called), delivered state, and how many working days have elapsed since entry. Provide a detail view (dialog or dedicated panel) to see full customer/device/problem info and to perform updates (quote, contact status, delivered).",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-in-app-reminder-notification-mechanism-for-repairs-that-have-been-kept-longer-than-3-working-days-since-entry-excluding-weekends-every-day-beyond-3-working-days-the-app-must-surface-a-visible-notification-reminder-while-the-app-is-open-summarizing-the-overdue-repairs-and-indicating-how-many-working-days-overdue-each-one-is",
+      "title": "Add an in-app reminder/notification mechanism for repairs that have been kept longer than 3 working days since entry (excluding weekends). Every day beyond 3 working days, the app must surface a visible notification/reminder while the app is open, summarizing the overdue repairs and indicating how many working days overdue each one is.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-translate-all-remaining-user-facing-ui-text-to-italian-across-the-entire-frontend-ensuring-the-interface-contains-no-english-strings-excluding-proper-nouns-brands-and-external-links-this-includes-authentication-login-logout-labels-and-states-profile-setup-dialog-text-headers-footers-and-welcome-empty-loading-error-states-all-sales-pending-balances-screens-all-repairs-screens-and-the-overdue-reminder-content",
+      "title": "Translate all remaining user-facing UI text to Italian across the entire frontend, ensuring the interface contains no English strings (excluding proper nouns/brands and external links). This includes: authentication/login/logout labels and states; profile setup dialog text; headers, footers, and welcome/empty/loading/error states; all sales (pending balances) screens; all repairs screens; and the overdue reminder content.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-rename-navigation-sections-and-menu-tab-labels-to-italian-consistently-including-the-main-top-level-tabs-and-primary-action-buttons-that-change-per-section-e-g-sales-pending-sales-repairs-new-sale-new-repair-choose-clear-italian-labels-aligned-with-the-domain-computer-phone-shop",
+      "title": "Rename navigation sections and menu/tab labels to Italian consistently, including the main top-level tabs and primary action buttons that change per section (e.g., Sales/Pending Sales/Repairs, New Sale/New Repair). Choose clear Italian labels aligned with the domain (computer/phone shop).",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-locale-consistent-formatting-for-repairs-timestamps-and-any-other-date-time-strings-displayed-to-the-user-by-using-italian-locale-formatting-where-applicable",
+      "title": "Ensure locale-consistent formatting for repairs timestamps and any other date/time strings displayed to the user by using Italian locale formatting where applicable.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-small-filtering-section-to-the-repairs-dashboard-frontend-src-features-repairs-components-repairsdashboard-tsx-to-filter-repair-records-by-status-including-1-contact-status-to-call-vs-called-and-2-delivery-status-not-delivered-vs-delivered-the-filter-must-work-together-with-the-existing-show-all-vs-open-only-toggle-and-must-update-the-displayed-table-rows-immediately",
+      "title": "Add a small filtering section to the Repairs dashboard (frontend/src/features/repairs/components/RepairsDashboard.tsx) to filter repair records by status, including: (1) contact status (To call vs Called) and (2) delivery status (Not delivered vs Delivered). The filter must work together with the existing \"show all\" vs \"open only\" toggle and must update the displayed table rows immediately.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Creare/anagrafica vendita con dati prodotto (categoria/descrizione e modello)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Associare alla vendita i dati cliente (nome, cognome, cellulare, email)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Gestire importi: prezzo di vendita, acconto iniziale e aggiornamenti dei pagamenti fino al saldo completo",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Indicatore stato pagamento: spunta verde se saldato, segnalazione rossa se non completato",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Create a backend data model to track a sold item with partial payments (a “pending balance” record), including: product type/category/description, model, customer first name, last name, mobile number, email, sale price, initial deposit, and a history of additional payments.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Implement backend CRUD endpoints for pending-balance records: create a new record, list all records, get a single record by id, add a new payment installment to a record, and mark/derive the record as fully paid when total payments reach the sale price.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Aggiungere sezione 'Assistenze' per registrare dispositivi in ingresso (cellulari/PC/console/altri) con modello, dati cliente (nome/cognome/cellulare/email) e descrizione problema/difetto",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Assistenze: campo preventivo e stato comunicazione al cliente con flag 'da chiamare' / 'chiamato'",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Assistenze: casella/stato per segnare quando il prodotto viene consegnato (chiusura assistenza)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Notifiche/promemoria: avviso giornaliero per ogni assistenza aperta oltre 3 giorni lavorativi dalla data di ingresso",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Extend the backend canister data model to support a new \"Repair/Assistance\" record type for devices received for service (phones, computers, consoles, other devices). Each record must store: a unique id, device category/type, device model, customer first name, customer last name, customer mobile number, customer email, problem/defect description, an optional quote/estimate amount, a contact status flag with exactly two states (\"To call\" and \"Called\"), a delivered/closed checkbox, and an entry/received timestamp used for overdue calculations.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Implement backend CRUD-style methods for repairs/assistance records with the same authorization expectations as the existing pending-balance methods (user permission required). Must include: create a repair record; list all repair records (with an option/behavior to focus on open/not-delivered items); get a single repair record by id; update the quote/estimate; update the contact status; and mark/unmark a repair as delivered (closed).",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Localizzare tutta l’app in italiano: tradurre interfaccia, notifiche/promemoria e rinominare sezioni e voci di menu in italiano",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Aggiungere nella sezione Assistenze/Riparazioni un piccolo filtro per visualizzare le assistenze in base allo stato (es. da chiamare/chiamato, consegnata/non consegnata)",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "projectName": "Store layaway balance tracker (products, customers, deposits, progressive payments)",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

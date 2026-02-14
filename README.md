@@ -1,2 +1,3 @@
-# store-layaway-balance-tracker-products-customers-deposits-progressive-payments
-Exported from Caffeine project: Store layaway balance tracker (products, customers, deposits, progressive payments)
+## 
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`
